@@ -9,7 +9,9 @@ import Dashboard from '../../pages/Dashboard';
 const mockedNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
+  // const ReactNavigation = jest.requireActual('@react-navigation/native');
   return {
+    // ReactNavigation,
     ...jest.requireActual('@react-navigation/native'),
     useNavigation: () => ({
       navigate: mockedNavigate,

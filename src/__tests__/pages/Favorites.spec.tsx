@@ -9,6 +9,8 @@ import Favorites from '../../pages/Favorites';
 const mockedNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
+  // const ReactNavigation = jest.requireActual('@react-navigation/native');
+
   return {
     ...jest.requireActual('@react-navigation/native'),
     useNavigation: () => ({

@@ -33,6 +33,14 @@ const Orders: React.FC = () => {
   useEffect(() => {
     async function loadOrders(): Promise<void> {
       // Load orders from API
+      api.get<Food[]>('orders').then(response => {
+        const { data } = response;
+        const formatedData = data.map((order: Food) => ({
+          ...order,
+          formattedPrice: formatValue(order.price),
+        }));
+        setOrders(formatedData);
+      });
     }
 
     loadOrders();
@@ -47,7 +55,7 @@ const Orders: React.FC = () => {
       <FoodsContainer>
         <FoodList
           data={orders}
-          keyExtractor={item => String(item.id)}
+          keyExtractor={(item: Food) => String(item.id)}
           renderItem={({ item }) => (
             <Food key={item.id} activeOpacity={0.6}>
               <FoodImageContainer>
